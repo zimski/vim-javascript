@@ -39,7 +39,7 @@ syntax keyword jsModules        import export contained
 syntax keyword jsModuleWords    default from as contained
 syntax keyword jsOf             of contained
 
-syntax region jsImportContainer      start="^\s\?import \?" end="$" contains=jsModules,jsModuleWords,jsComment,jsStringS,jsStringD,jsTemplateString
+syntax region jsImportContainer      start="^\s\?import \?" end="$" contains=jsModules,jsModuleWords,jsComment,jsStringS,jsStringD,jsTemplateString keepend
 
 syntax region jsExportContainer      start="^\s\?export \?" end="$" contains=jsModules,jsModuleWords,jsComment,jsTemplateString,jsStringD,jsStringS,jsRegexpString,jsNumber,jsFloat,jsThis,jsOperator,jsBooleanTrue,jsBooleanFalse,jsNull,jsFunction,jsArrowFunction,jsGlobalObjects,jsExceptions,jsDomErrNo,jsDomNodeConsts,jsHtmlEvents,jsDotNotation,jsBracket,jsParen,jsFuncCall,jsUndefined,jsNan,jsKeyword,jsClass,jsStorageClass,jsPrototype,jsBuiltins,jsNoise,jsAssignmentExpr
 
