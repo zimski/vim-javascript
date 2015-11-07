@@ -60,7 +60,7 @@ let s:one_line_scope_regex = '\<\%(if\|else\|for\|while\)\>[^{;]*' . s:line_term
 " Regex that defines blocks.
 let s:block_regex = '\%([{[]\)\s*\%(|\%([*@]\=\h\w*,\=\s*\)\%(,\s*[*@]\=\h\w*\)*|\)\=' . s:line_term
 
-let s:var_stmt = '^\s*(const\|let\|var)'
+let s:var_stmt = '^\s*\(var\|let\|const\)\s\+'
 
 let s:comma_first = '^\s*,'
 let s:comma_last = ',\s*$'
@@ -201,9 +201,9 @@ function s:GetVarIndent(lnum)
 
     " if the previous line doesn't end in a comma, return to regular indent
     if (line !~ s:comma_last)
-      return indent(prev_lnum) - &sw
+      return indent(prev_lnum) - 2 - &sw
     else
-      return indent(lvar) + &sw
+      return indent(lvar) + 2 + &sw
     endif
   endif
 
@@ -381,10 +381,10 @@ function GetJavascriptIndent()
   endif
 
   " Check for multiple var assignments
-"  let var_indent = s:GetVarIndent(v:lnum)
-"  if var_indent >= 0
-"    return var_indent
-"  endif
+  let var_indent = s:GetVarIndent(v:lnum)
+  if var_indent >= 0
+    return var_indent
+  endif
 
   " 3.3. Work on the previous line. {{{2
   " -------------------------------
